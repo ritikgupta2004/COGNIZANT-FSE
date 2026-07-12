@@ -1,0 +1,550 @@
+                            COGNIZANT WEEK 4 LEARNING
+1. What is Code Quality?
+Code Quality means writing code that is:
+•	Correct
+•	Readable
+•	Maintainable
+•	Reusable
+•	Efficient
+•	Secure
+•	Easy to Test
+Example:
+Poor Quality Code
+public class Demo {
+    public static void main(String args[]) {
+        int a = 10;
+        int b = 20;
+        int c = a + b;
+        System.out.println(c);
+    }
+}
+Nothing is wrong, but imagine a project with 10000 lines written like this.
+
+Better Quality Code
+public class Calculator {
+
+    public static int add(int firstNumber, int secondNumber) {
+        return firstNumber + secondNumber;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(add(10, 20));
+    }
+}
+Advantages
+✔ Reusable
+✔ Easy to understand
+✔ Easy to test
+________________________________________
+2. Characteristics of Good Code
+A good program should have
+Readability
+Bad
+int x=5;
+Good
+int employeeAge = 25;
+________________________________________
+Simplicity
+Avoid unnecessary logic.
+Bad
+if(a==true)
+Good
+if(a)
+________________________________________
+Reusability
+Instead of
+System.out.println(10+20);
+System.out.println(20+30);
+Create
+public static int add(int a,int b){
+    return a+b;
+}
+________________________________________
+Maintainability
+Suppose salary calculation changes.
+Instead of changing 100 places
+Change one method.
+________________________________________
+Efficiency
+Good algorithm
+O(log n)
+Better than
+O(n²)
+________________________________________
+Security
+Never write
+String password="admin123";
+Passwords should be encrypted.
+________________________________________
+3. What is Static Code Analysis?
+Static Code Analysis means
+Analyzing source code
+WITHOUT running it.
+Example
+Java File
+
+↓
+
+Scanner
+
+↓
+
+Find Bugs
+
+↓
+
+Report
+Tools
+•	SonarQube
+•	PMD
+•	Checkstyle
+•	SpotBugs
+________________________________________
+4. What is SonarQube?
+SonarQube is an Open Source Code Quality Tool.
+It analyzes source code and reports
+•	Bugs
+•	Vulnerabilities
+•	Code Smells
+•	Duplicate Code
+•	Test Coverage
+Official workflow
+Write Code
+
+↓
+
+Commit
+
+↓
+
+CI/CD
+
+↓
+
+SonarQube Analysis
+
+↓
+
+Quality Report
+________________________________________
+5. Why SonarQube?
+Without SonarQube
+Developer manually checks code.
+With SonarQube
+Everything is automatic.
+________________________________________
+6. SonarQube Architecture
+Developer
+
+↓
+
+GitHub
+
+↓
+
+Jenkins
+
+↓
+
+Sonar Scanner
+
+↓
+
+SonarQube Server
+
+↓
+
+Database
+________________________________________
+7. Components
+SonarQube Server
+Stores reports.
+________________________________________
+Sonar Scanner
+Scans project.
+Command
+sonar-scanner
+________________________________________
+Database
+Stores
+•	Analysis history
+•	Metrics
+•	Users
+________________________________________
+Web Dashboard
+Shows
+•	Bugs
+•	Security
+•	Coverage
+•	Duplications
+________________________________________
+8. SonarQube Metrics
+Bugs
+Example
+int x=10/0;
+Possible runtime error.
+________________________________________
+Vulnerability
+Example
+SQL Injection
+String sql="select * from user where id="+id;
+Unsafe.
+________________________________________
+Code Smell
+Example
+if(a==true)
+Not wrong
+But poor coding style.
+________________________________________
+Duplicated Code
+Same code repeated
+Should move into a method.
+________________________________________
+Test Coverage
+Suppose
+100 methods
+Only 80 tested
+Coverage
+80%
+________________________________________
+9. Quality Gate
+Quality Gate is like
+Pass/Fail.
+Example
+Coverage >80%
+
+Bugs =0
+
+Vulnerability =0
+
+Duplications <3%
+Pass
+Otherwise
+Fail.
+________________________________________
+10. Code Smell Example
+Bad
+public void print(){
+
+System.out.println("A");
+
+System.out.println("B");
+
+System.out.println("C");
+
+System.out.println("D");
+
+}
+Better
+Split into methods.
+________________________________________
+11. Installing SonarQube
+Requirements
+•	Java 17
+•	PostgreSQL
+•	SonarQube Server
+•	Sonar Scanner
+________________________________________
+12. Maven Configuration
+Add plugin
+<plugin>
+    <groupId>org.sonarsource.scanner.maven</groupId>
+    <artifactId>sonar-maven-plugin</artifactId>
+    <version>3.9.1.2184</version>
+</plugin>
+Run
+mvn sonar:sonar
+________________________________________
+
+Topic 2 – Microservices with Spring Boot 3 and Spring Cloud
+________________________________________
+1. What is Monolithic Architecture?
+Everything inside one project.
+Application
+
+|
+
+|-- Login
+
+|-- Payment
+
+|-- Product
+
+|-- Order
+
+|-- Customer
+Problem
+Small change
+↓
+Deploy whole application.
+________________________________________
+2. What is Microservices?
+Instead of one application
+Split into multiple services.
+Client
+
+|
+
+API Gateway
+
+|
+
+-----------------------
+
+| | |
+
+Product Order Payment
+
+Service Service Service
+Each service is independent.
+________________________________________
+Advantages
+Independent deployment
+Easy scaling
+Technology independent
+Fault isolation
+Small codebase
+________________________________________
+Disadvantages
+Complex communication
+More servers
+Distributed transactions
+Monitoring required
+________________________________________
+3. Spring Boot 3
+Spring Boot is used to develop Java applications quickly.
+Features
+Embedded Tomcat
+Auto Configuration
+Starter Dependencies
+REST APIs
+No XML
+________________________________________
+Spring Boot Project
+src
+
+main
+
+java
+
+controller
+
+service
+
+repository
+
+model
+
+resources
+
+application.properties
+________________________________________
+REST Controller
+@RestController
+public class HelloController {
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello Cognizant";
+    }
+}
+Output
+Hello Cognizant
+________________________________________
+Service Layer
+@Service
+public class ProductService {
+
+    public String getProduct() {
+        return "Laptop";
+    }
+}
+________________________________________
+Controller Calling Service
+@RestController
+public class ProductController {
+
+    @Autowired
+    ProductService service;
+
+    @GetMapping("/product")
+    public String product() {
+        return service.getProduct();
+    }
+}
+________________________________________
+4. Spring Cloud
+Spring Cloud helps manage multiple microservices.
+Modules
+•	Eureka Server
+•	Eureka Client
+•	Config Server
+•	API Gateway
+•	OpenFeign
+•	Circuit Breaker
+________________________________________
+5. Eureka Server
+Service Registry.
+Order Service
+
+↓
+
+Register
+
+↓
+
+Eureka Server
+
+↓
+
+Product Service
+
+↓
+
+Register
+Dependency
+<dependency>
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+</dependency>
+Enable
+@EnableEurekaServer
+@SpringBootApplication
+public class EurekaApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(EurekaApplication.class,args);
+    }
+
+}
+________________________________________
+6. Eureka Client
+Each service registers itself.
+Product Service
+
+↓
+
+Eureka
+Dependency
+<dependency>
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+</dependency>
+________________________________________
+7. API Gateway
+Instead of
+Client
+
+↓
+
+Product
+
+↓
+
+Order
+
+↓
+
+Payment
+Use
+Client
+
+↓
+
+API Gateway
+
+↓
+
+Microservices
+Benefits
+Authentication
+Logging
+Load Balancing
+Routing
+Security
+________________________________________
+8. OpenFeign
+Used for service-to-service communication.
+Instead of
+RestTemplate
+Use
+@FeignClient(name="product-service")
+public interface ProductClient{
+
+@GetMapping("/product")
+String getProduct();
+
+}
+________________________________________
+9. Config Server
+Stores
+application.properties
+for all services.
+Instead of
+10 property files
+↓
+One centralized server.
+________________________________________
+10. Circuit Breaker
+Suppose
+Payment Service
+↓
+Down
+Without Circuit Breaker
+Everything waits.
+With Circuit Breaker
+Fallback response.
+Example
+@CircuitBreaker(name="payment",fallbackMethod="fallback")
+________________________________________
+11. Load Balancing
+Client
+
+↓
+
+Gateway
+
+↓
+
+Product1
+
+Product2
+
+Product3
+Requests distributed equally.
+________________________________________
+12. Microservice Flow
+User
+
+↓
+
+API Gateway
+
+↓
+
+Eureka
+
+↓
+
+Order Service
+
+↓
+
+Feign Client
+
+↓
+
+Product Service
+
+↓
+
+Database
+________________________________________
+13. Spring Boot 3 Features
+•	Java 17 support
+•	Better performance
+•	Spring Framework 6
+•	Improved Observability
+•	Native Image support
+•	Jakarta EE 9 namespace (jakarta.* instead of javax.*)  
+
