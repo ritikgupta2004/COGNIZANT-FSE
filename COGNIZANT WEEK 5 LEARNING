@@ -1,0 +1,851 @@
+Perfect. Since you're studying **Cognizant Java FSE Week 5 (React)**, we'll focus only on the **important topics** that are asked in interviews, quizzes, and are used in real projects. We'll cover **one topic at a time** in depth.
+---
+
+# Topic 1: Introduction to React
+
+## What is React?
+
+**React** is a **JavaScript library** developed by **Facebook (Meta)** for building **fast, interactive, and reusable User Interfaces (UI)**, especially for **Single Page Applications (SPAs)**.
+
+Unlike traditional websites where each click reloads the entire page, React updates **only the parts of the page that change**.
+
+---
+
+## Official Definition
+
+> React is an open-source JavaScript library used to build user interfaces by creating reusable UI components.
+
+---
+
+## Why was React Created?
+
+Before React, websites were built using plain HTML, CSS, and JavaScript.
+
+Example:
+
+Suppose a page has:
+
+* Navbar
+* Sidebar
+* Profile Card
+* Footer
+
+If the user changes only their profile picture, traditional JavaScript often required manually finding and updating DOM elements.
+
+React simplifies this by automatically updating **only the changed component**, making development easier and applications faster.
+
+---
+
+# What Problems Does React Solve?
+
+Without React:
+
+* Lots of DOM manipulation
+* Repeated code
+* Difficult to maintain large projects
+* Slow updates
+
+With React:
+
+* Reusable Components
+* Faster rendering
+* Easier maintenance
+* Cleaner code
+
+---
+
+# Real-world Applications Built with React
+
+Many popular applications use React:
+
+* Facebook
+* Instagram
+* WhatsApp Web
+* Netflix
+* Airbnb
+* Discord
+* Dropbox
+
+---
+
+# Features of React
+
+## 1. Component-Based Architecture
+
+React applications are divided into small reusable pieces called **components**.
+
+Example:
+
+```
+App
+│
+├── Navbar
+├── Sidebar
+├── Home
+├── Footer
+```
+
+Each component is independent.
+
+---
+
+## 2. Virtual DOM
+
+### What is DOM?
+
+DOM = Document Object Model
+
+When HTML loads, the browser creates a tree.
+
+Example:
+
+```html
+<body>
+    <h1>Hello</h1>
+    <button>Click</button>
+</body>
+```
+
+DOM Tree
+
+```
+Body
+ ├── h1
+ └── Button
+```
+
+Traditional JavaScript directly changes the Real DOM, which can be slow.
+
+---
+
+### What is Virtual DOM?
+
+React creates a lightweight copy called the **Virtual DOM**.
+
+Process:
+
+```
+State Changes
+
+↓
+
+Virtual DOM Updated
+
+↓
+
+Compare with Previous Virtual DOM
+
+↓
+
+Find Difference
+
+↓
+
+Update Only Changed Elements
+```
+
+This comparison process is called **Diffing**.
+
+Updating only the changed elements improves performance.
+
+---
+
+## 3. JSX
+
+React uses **JSX (JavaScript XML)**.
+
+Example:
+
+```jsx
+const element = <h1>Hello React</h1>;
+```
+
+Instead of:
+
+```javascript
+document.createElement("h1");
+```
+
+JSX looks like HTML but is actually JavaScript.
+
+---
+
+## 4. One-Way Data Binding
+
+Data flows in one direction:
+
+```
+Parent Component
+
+↓
+
+Child Component
+```
+
+This makes applications predictable and easier to debug.
+
+---
+
+## 5. Reusable Components
+
+Example:
+
+Instead of writing this three times:
+
+```html
+<div class="card">
+```
+
+React:
+
+```jsx
+<Card />
+<Card />
+<Card />
+```
+
+One component can be reused multiple times.
+
+---
+
+## 6. Fast Rendering
+
+Because of the Virtual DOM, React updates only changed parts instead of reloading the whole page.
+
+---
+
+## 7. Declarative Programming
+
+Instead of telling React **how** to update the UI, you tell it **what** the UI should look like.
+
+Example:
+
+```jsx
+<h1>Welcome</h1>
+```
+
+React handles the DOM updates automatically.
+
+---
+
+# React vs JavaScript
+
+| JavaScript              | React                 |
+| ----------------------- | --------------------- |
+| Programming language    | JavaScript library    |
+| Manual DOM manipulation | Virtual DOM           |
+| More code               | Less code             |
+| Harder for large apps   | Better for large apps |
+| Not component-based     | Component-based       |
+
+---
+
+# React Architecture
+
+```
+App
+
+│
+
+├── Navbar
+
+├── Home
+
+│      ├── ProductCard
+
+│      ├── ProductCard
+
+│      └── ProductCard
+
+├── About
+
+└── Footer
+```
+
+Each box is a component.
+
+---
+
+# Advantages of React
+
+* Easy to learn
+* Component-based architecture
+* Fast rendering
+* Virtual DOM
+* Reusable code
+* Strong community support
+* SEO-friendly (with frameworks like Next.js)
+* Easy integration with APIs
+* Huge ecosystem
+
+---
+
+# Limitations of React
+
+* React handles only the UI layer.
+* Routing requires libraries like React Router.
+* State management for large apps may require Context API or Redux.
+* JSX can seem unusual at first.
+
+---
+
+# Simple React Example
+
+```jsx
+function App() {
+    return (
+        <h1>Hello React!</h1>
+    );
+}
+
+export default App;
+```
+
+### Explanation
+
+* `function App()` defines a React component.
+* `return` specifies what should appear on the screen.
+* `<h1>Hello React!</h1>` is JSX.
+* `export default App;` makes the component available to other files.
+
+---
+
+# Where is React Used?
+
+* E-commerce websites
+* Social media platforms
+* Banking applications
+* Dashboards
+* Admin panels
+* Chat applications
+* Portfolio websites
+* Online learning platforms
+
+---
+Great! Let's continue with the next important React topic.
+
+---
+
+# Topic 2: JSX (JavaScript XML)
+
+## What is JSX?
+
+**JSX (JavaScript XML)** is a **syntax extension of JavaScript** that allows us to write **HTML-like code inside JavaScript**.
+
+React converts JSX into normal JavaScript before the browser executes it.
+
+For example, instead of writing JavaScript DOM code manually, we write HTML-like syntax.
+
+Without JSX:
+
+```javascript
+const element = React.createElement(
+    "h1",
+    null,
+    "Hello React"
+);
+```
+
+With JSX:
+
+```jsx
+const element = <h1>Hello React</h1>;
+```
+
+Both produce the same result, but JSX is much easier to read and write.
+
+---
+
+# Why do we use JSX?
+
+Imagine you want to create this webpage:
+
+```html
+<h1>Welcome</h1>
+<p>Learning React</p>
+<button>Click Me</button>
+```
+
+Without JSX, you would need many `createElement()` calls.
+
+With JSX:
+
+```jsx
+function App() {
+    return (
+        <div>
+            <h1>Welcome</h1>
+            <p>Learning React</p>
+            <button>Click Me</button>
+        </div>
+    );
+}
+```
+
+Much simpler!
+
+---
+
+# How JSX Works
+
+When you write:
+
+```jsx
+<h1>Hello</h1>
+```
+
+React (using Babel) converts it to:
+
+```javascript
+React.createElement(
+    "h1",
+    null,
+    "Hello"
+);
+```
+
+### Compilation Flow
+
+```text
+JSX
+
+↓
+
+Babel Compiler
+
+↓
+
+React.createElement()
+
+↓
+
+JavaScript Object
+
+↓
+
+Browser Displays HTML
+```
+
+---
+
+# Rules of JSX
+
+## Rule 1: Return Only One Parent Element
+
+ Incorrect
+
+```jsx
+function App() {
+    return (
+        <h1>Hello</h1>
+        <p>React</p>
+    );
+}
+```
+
+React throws an error because two elements are returned.
+
+---
+
+ Correct
+
+```jsx
+function App() {
+    return (
+        <div>
+            <h1>Hello</h1>
+            <p>React</p>
+        </div>
+    );
+}
+```
+
+Output:
+
+```text
+Hello
+
+React
+```
+
+---
+
+## Rule 2: Close Every Tag
+
+HTML sometimes allows:
+
+```html
+<input>
+```
+
+In JSX, every tag must be closed.
+
+Correct:
+
+```jsx
+<input />
+```
+
+```jsx
+<br />
+```
+
+```jsx
+<img src="logo.png" />
+```
+
+---
+
+## Rule 3: Use className Instead of class
+
+HTML:
+
+```html
+<h1 class="title">Hello</h1>
+```
+
+JSX:
+
+```jsx
+<h1 className="title">Hello</h1>
+```
+
+Why?
+
+`class` is a reserved keyword in JavaScript.
+
+---
+
+## Rule 4: Use htmlFor Instead of for
+
+HTML:
+
+```html
+<label for="name">
+```
+
+JSX:
+
+```jsx
+<label htmlFor="name">
+```
+
+---
+
+## Rule 5: JavaScript Expressions Use {}
+
+Anything inside `{}` is treated as JavaScript.
+
+Example:
+
+```jsx
+const name = "Ritik";
+
+function App() {
+    return (
+        <h1>Hello {name}</h1>
+    );
+}
+```
+
+Output
+
+```text
+Hello Ritik
+```
+
+---
+
+# Expressions Inside JSX
+
+Addition
+
+```jsx
+function App() {
+    return (
+        <h1>{10 + 20}</h1>
+    );
+}
+```
+
+Output
+
+```text
+30
+```
+
+---
+
+Variables
+
+```jsx
+const age = 21;
+
+function App() {
+    return (
+        <h2>Age = {age}</h2>
+    );
+}
+```
+
+Output
+
+```text
+Age = 21
+```
+
+---
+
+Functions
+
+```jsx
+function greet() {
+    return "Good Morning";
+}
+
+function App() {
+    return (
+        <h1>{greet()}</h1>
+    );
+}
+```
+
+Output
+
+```text
+Good Morning
+```
+
+---
+
+Objects
+
+```jsx
+const student = {
+    name: "Ritik",
+    age: 21
+};
+
+function App() {
+    return (
+        <h1>{student.name}</h1>
+    );
+}
+```
+
+Output
+
+```text
+Ritik
+```
+
+---
+
+# Using CSS in JSX
+
+Inline CSS is written as an object.
+
+```jsx
+function App() {
+    return (
+        <h1 style={{ color: "blue", fontSize: "40px" }}>
+            React
+        </h1>
+    );
+}
+```
+
+Notice:
+
+```jsx
+style={{ }}
+```
+
+* First `{}` → JavaScript expression.
+* Second `{}` → JavaScript object.
+
+---
+
+# Comments in JSX
+
+Incorrect
+
+```jsx
+<!-- Comment -->
+```
+
+Correct
+
+```jsx
+{/* This is a JSX comment */}
+```
+
+Example
+
+```jsx
+function App() {
+    return (
+        <div>
+            {/* Heading */}
+            <h1>Hello</h1>
+        </div>
+    );
+}
+```
+
+---
+
+# JSX Attributes
+
+Example
+
+```jsx
+function App() {
+    return (
+        <img
+            src="logo.png"
+            alt="Logo"
+            width="200"
+        />
+    );
+}
+```
+
+Everything looks like HTML but follows JavaScript naming rules.
+
+---
+
+# Fragments
+
+Instead of wrapping everything inside `<div>`, React provides **Fragments**.
+
+Using Fragment:
+
+```jsx
+function App() {
+    return (
+        <>
+            <h1>Hello</h1>
+            <p>Welcome</p>
+        </>
+    );
+}
+```
+
+React doesn't create an extra `<div>` in the DOM.
+
+---
+
+# JSX vs HTML
+
+| HTML                   | JSX                     |
+| ---------------------- | ----------------------- |
+| class                  | className               |
+| for                    | htmlFor                 |
+| onclick                | onClick                 |
+| inline style as string | inline style as object  |
+| Comments `<!-- -->`    | `{/* */}`               |
+| Tags may remain open   | All tags must be closed |
+
+---
+
+# Complete Example
+
+```jsx
+function App() {
+
+    const name = "Ritik";
+    const age = 21;
+
+    return (
+        <>
+            <h1>Hello {name}</h1>
+
+            <h2>Age : {age}</h2>
+
+            <p>Welcome to React</p>
+
+            <button>Click Me</button>
+        </>
+    );
+}
+
+export default App;
+```
+
+Output:
+
+```text
+Hello Ritik
+
+Age : 21
+
+Welcome to React
+
+[Click Me]
+```
+
+---
+
+# Common Mistakes
+
+###  Multiple parent elements
+
+```jsx
+<h1>Hello</h1>
+<p>World</p>
+```
+
+ Wrap them:
+
+```jsx
+<>
+    <h1>Hello</h1>
+    <p>World</p>
+</>
+```
+
+---
+
+###  Using `class`
+
+```jsx
+<h1 class="title">
+```
+
+
+
+```jsx
+<h1 className="title">
+```
+
+---
+
+###  Using `for`
+
+```jsx
+<label for="email">
+```
+
+
+
+```jsx
+<label htmlFor="email">
+```
+
+---
+
+###  Forgetting to close tags
+
+```jsx
+<input>
+```
+
+
+
+```jsx
+<input />
+```
+
+---
+
