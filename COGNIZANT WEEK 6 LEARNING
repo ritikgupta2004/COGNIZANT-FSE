@@ -1,0 +1,567 @@
+Week 6: Java + React Full Stack Development
+1. Full Stack Architecture (Java + React)
+Definition
+
+A Full Stack Application is an application where the developer handles both:
+
+Frontend (User Interface)
+Backend (Business Logic)
+Database (Data Storage)
+
+In Java + React stack:
+
+React
+  |
+  | HTTP Request (REST API)
+  |
+Spring Boot
+  |
+  | JDBC / JPA
+  |
+Database
+
+Example:
+
+Library Management System:
+
+User
+ |
+React UI
+ |
+Book API
+ |
+Spring Boot Controller
+ |
+Service Layer
+ |
+Repository Layer
+ |
+MySQL Database
+Part 1: Java Backend
+2. Java Backend Development
+
+Java is mainly used to create the server-side application.
+
+Responsibilities:
+
+Handle requests
+Apply business logic
+Connect database
+Return response
+
+Example:
+
+User requests:
+
+GET /books
+
+Java backend:
+
+Controller
+   |
+Service
+   |
+Repository
+   |
+Database
+
+Returns:
+
+[
+ {
+  "id":1,
+  "name":"Java Programming"
+ }
+]
+3. Spring Boot
+Definition
+
+Spring Boot is a framework built on top of Spring Framework used to create production-ready Java applications quickly.
+
+It reduces configuration and provides:
+
+Embedded server
+Dependency injection
+REST API support
+Database integration
+Advantages
+1. Auto Configuration
+
+Spring Boot automatically configures required components.
+
+Example:
+
+Instead of manually configuring:
+
+DispatcherServlet
+Database Connection
+Tomcat Server
+
+Spring Boot handles it.
+
+2. Embedded Server
+
+Traditional Java:
+
+Code
+ |
+WAR File
+ |
+Tomcat Installation
+
+Spring Boot:
+
+Application
+ |
+Embedded Tomcat
+
+Run:
+
+java -jar application.jar
+4. Spring Boot Project Structure
+
+Typical structure:
+
+src/main/java
+
+com.example.library
+
+|
+|-- controller
+|
+|-- service
+|
+|-- repository
+|
+|-- model
+|
+|-- LibraryApplication.java
+5. Creating REST API in Spring Boot
+REST API
+Definition
+
+REST (Representational State Transfer) is an architecture used for communication between frontend and backend using HTTP methods.
+
+Common methods:
+
+Method	Purpose
+GET	Fetch data
+POST	Create data
+PUT	Update data
+DELETE	Remove data
+
+Example:
+
+Library System:
+
+GET /books
+
+POST /books
+
+PUT /books/1
+
+DELETE /books/1
+6. Spring Boot Controller
+
+Controller handles incoming requests.
+
+Example:
+
+@RestController
+@RequestMapping("/books")
+public class BookController {
+
+
+@GetMapping
+public String getBooks(){
+
+return "All Books";
+
+}
+
+
+@PostMapping
+public String addBook(){
+
+return "Book Added";
+
+}
+
+}
+
+Request:
+
+localhost:8080/books
+
+Response:
+
+All Books
+7. Entity Class
+
+Entity represents database table.
+
+Example:
+
+Book Table:
+
+id	name	author
+1	Java	James
+
+Java:
+
+@Entity
+public class Book {
+
+
+@Id
+@GeneratedValue
+private int id;
+
+private String name;
+
+private String author;
+
+
+}
+8. JPA Repository
+Definition
+
+JPA Repository provides methods to communicate with database without writing SQL queries.
+
+Example:
+
+public interface BookRepository 
+extends JpaRepository<Book,Integer>{
+
+}
+
+Automatically provides:
+
+save()
+findAll()
+findById()
+delete()
+9. Service Layer
+
+Business logic is written here.
+
+Controller:
+
+Request
+ |
+Controller
+ |
+Service
+ |
+Repository
+ |
+Database
+
+Example:
+
+@Service
+public class BookService {
+
+
+@Autowired
+BookRepository repository;
+
+
+public List<Book> getBooks(){
+
+return repository.findAll();
+
+}
+
+}
+Complete Backend Flow
+React Button Click
+
+        |
+        ↓
+
+HTTP Request
+
+        |
+        ↓
+
+Controller
+
+        |
+        ↓
+
+Service
+
+        |
+        ↓
+
+Repository
+
+        |
+        ↓
+
+Database
+
+        |
+        ↓
+
+JSON Response
+
+        |
+        ↓
+
+React UI
+Part 2: React Frontend
+10. React
+Definition
+
+React is a JavaScript library used to build fast and interactive user interfaces using reusable components.
+
+Developed by:
+
+Meta Platforms
+
+React Features
+1. Component Based Architecture
+
+UI is divided into reusable components.
+
+Example:
+
+App
+
+ |
+ |-- Navbar
+ |
+ |-- Login
+ |
+ |-- Dashboard
+ |
+ |-- Footer
+2. Virtual DOM
+
+React does not directly update the browser DOM.
+
+Flow:
+
+State Change
+
+↓
+
+Virtual DOM
+
+↓
+
+Difference Calculation
+
+↓
+
+Real DOM Update
+
+This improves performance.
+
+11. React Component
+
+Example:
+
+function Welcome(){
+
+return(
+<h1>
+Welcome User
+</h1>
+)
+
+}
+
+export default Welcome;
+12. JSX
+Definition
+
+JSX allows writing HTML-like syntax inside JavaScript.
+
+Example:
+
+const element = <h1>Hello React</h1>;
+
+Browser converts it into JavaScript.
+
+13. Props
+Definition
+
+Props are used to pass data from parent component to child component.
+
+Example:
+
+Parent:
+
+<User name="Ritik"/>
+
+Child:
+
+function User(props){
+
+return(
+<h1>{props.name}</h1>
+)
+
+}
+
+Output:
+
+Ritik
+14. State
+Definition
+
+State stores data that changes during component execution.
+
+Example:
+
+Counter:
+
+import {useState} from "react";
+
+
+function Counter(){
+
+const [count,setCount]=useState(0);
+
+
+return(
+
+<button onClick={()=>setCount(count+1)}>
+
+{count}
+
+</button>
+
+)
+
+}
+15. React Hooks
+
+Hooks allow functional components to use React features.
+
+Important hooks:
+
+useState
+
+Stores data.
+
+useEffect
+
+Performs side effects.
+
+Example:
+
+API call:
+
+useEffect(()=>{
+
+fetch("http://localhost:8080/books")
+.then(res=>res.json())
+.then(data=>console.log(data))
+
+},[])
+16. React Router
+
+Used for navigation.
+
+Example:
+
+Pages:
+
+/home
+
+/books
+
+/login
+
+Installation:
+
+npm install react-router-dom
+
+Example:
+
+<Route 
+path="/books"
+element={<Books/>}
+/>
+17. Connecting React with Spring Boot
+
+React uses:
+
+Axios
+
+to call APIs.
+
+Install:
+
+npm install axios
+
+Example:
+
+import axios from "axios";
+
+
+axios.get(
+"http://localhost:8080/books"
+)
+.then(response=>{
+
+console.log(response.data)
+
+})
+18. CORS
+Problem
+
+Frontend:
+
+localhost:3000
+
+Backend:
+
+localhost:8080
+
+Different ports cause security error.
+
+Solution:
+
+Spring Boot:
+
+@CrossOrigin(
+origins="http://localhost:3000"
+)
+
+@RestController
+public class BookController{
+
+
+}
+19. CRUD Application Flow
+
+Example: Library Management
+
+Create Book
+
+React:
+
+Form
+ |
+POST Request
+ |
+Spring Boot
+ |
+Database
+Read Book
+GET API
+
+Database
+
+JSON
+
+React Table
+Update
+PUT API
+Delete
+DELETE API
