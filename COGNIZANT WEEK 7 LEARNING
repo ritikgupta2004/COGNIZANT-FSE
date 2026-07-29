@@ -1,0 +1,688 @@
+Week 7 Overview
+Frontend
+(Angular + React)
+        |
+        |
+Backend
+(Java Spring Boot)
+        |
+        |
+Containerization
+(Docker)
+        |
+        |
+Deployment
+(Cloud)
+        |
+        |
+Automation
+(DevOps)
+        |
+        |
+AI Integration
+(GenAI)
+1. DevOps Fundamentals
+Definition
+
+DevOps is a software development approach that combines Development (Dev) and Operations (Ops) to automate software development, testing, deployment, and monitoring.
+
+Traditional approach:
+
+Developer
+   |
+Code
+   |
+Tester
+   |
+Operations
+   |
+Deployment
+
+Problems:
+
+Slow releases
+Manual deployment
+More errors
+
+DevOps approach:
+
+Developer
+    |
+    |
+CI/CD Pipeline
+    |
+    |
+Testing
+    |
+    |
+Deployment
+    |
+    |
+Monitoring
+
+Benefits:
+
+Faster delivery
+Automated testing
+Reliable deployment
+Better collaboration
+2. DevOps Lifecycle
+Plan
+ |
+Code
+ |
+Build
+ |
+Test
+ |
+Release
+ |
+Deploy
+ |
+Operate
+ |
+Monitor
+1. Plan
+
+Requirement analysis.
+
+Tools:
+
+Jira
+Trello
+2. Code
+
+Developers write application code.
+
+Tools:
+
+Git
+GitHub
+
+Example:
+
+git add .
+git commit -m "Added login feature"
+git push
+3. Build
+
+Convert source code into executable application.
+
+Java:
+
+.java
+ |
+Maven Build
+ |
+.jar file
+
+Command:
+
+mvn clean install
+4. Test
+
+Automatically test application.
+
+Tools:
+
+JUnit
+Selenium
+SonarQube
+5. Release
+
+Prepare application for production.
+
+Example:
+
+Application.jar
+Docker Image
+6. Deploy
+
+Move application to server/cloud.
+
+Tools:
+
+Docker
+Kubernetes
+AWS
+3. Continuous Integration (CI)
+Definition
+
+CI means automatically integrating code changes from multiple developers into a shared repository.
+
+Example:
+
+Developer A:
+
+Login Feature
+
+Developer B:
+
+Payment Feature
+
+CI automatically:
+
+Merge Code
+ |
+Build
+ |
+Run Tests
+
+Tools:
+
+Jenkins
+GitHub Actions
+GitLab CI
+4. Continuous Deployment (CD)
+Definition
+
+CD automatically deploys tested code into production.
+
+Flow:
+
+Developer Push Code
+
+        |
+
+GitHub
+
+        |
+
+Jenkins Pipeline
+
+        |
+
+Docker Build
+
+        |
+
+Cloud Deployment
+5. Jenkins
+Definition
+
+Jenkins is an open-source automation server used for CI/CD pipelines.
+
+Uses:
+
+Build automation
+Testing
+Deployment
+
+Example Pipeline:
+
+GitHub
+ |
+Jenkins
+ |
+Maven Build
+ |
+Docker Image
+ |
+AWS Deployment
+6. Docker
+Definition
+
+Docker is a containerization platform that packages an application with all dependencies so it runs consistently across environments.
+
+Problem:
+
+Developer machine:
+
+Java 17
+MySQL 8
+Node 20
+
+Production:
+
+Java 11
+MySQL 5
+
+Application fails.
+
+Docker solution:
+
+Application
+
++
+
+Libraries
+
++
+
+Runtime
+
++
+
+Dependencies
+
+=
+
+Container
+7. Container vs Virtual Machine
+Container	Virtual Machine
+Lightweight	Heavy
+Shares OS Kernel	Separate OS
+Fast startup	Slow startup
+Uses Docker	Uses VMware
+8. Docker Architecture
+Docker Client
+
+      |
+
+Docker Engine
+
+      |
+
+Containers
+
+Main components:
+
+Image
+
+Blueprint of application.
+
+Example:
+
+Java Application Image
+Container
+
+Running instance of image.
+
+Example:
+
+Image
+ |
+Container
+9. Docker Commands
+
+Check Docker:
+
+docker --version
+
+Download image:
+
+docker pull mysql
+
+View images:
+
+docker images
+
+Run container:
+
+docker run mysql
+
+View containers:
+
+docker ps
+
+Stop container:
+
+docker stop container_id
+10. Dockerfile
+Definition
+
+Dockerfile contains instructions to create a Docker image.
+
+Example Spring Boot Dockerfile:
+
+FROM openjdk:17
+
+COPY target/app.jar app.jar
+
+ENTRYPOINT ["java","-jar","app.jar"]
+
+Build:
+
+docker build -t library-app .
+
+Run:
+
+docker run -p 8080:8080 library-app
+11. Docker in Java React Application
+
+Full Stack Deployment:
+
+React Container
+       |
+       |
+Spring Boot Container
+       |
+       |
+MySQL Container
+
+Using:
+
+Docker Compose
+
+Example:
+
+version: "3"
+
+services:
+
+ frontend:
+  image: react-app
+
+ backend:
+  image: spring-app
+
+ database:
+  image: mysql
+12. Cloud Computing Fundamentals
+Definition
+
+Cloud computing provides computing resources over the internet.
+
+Instead of:
+
+Buy Server
+Install Software
+Maintain Hardware
+
+Cloud:
+
+Rent Resources
+Use When Needed
+Pay According To Usage
+13. Cloud Service Models
+1. IaaS
+
+Infrastructure as a Service
+
+Provides:
+
+Virtual machines
+Storage
+Network
+
+Examples:
+
+AWS EC2
+Azure VM
+
+Developer manages:
+
+Application
+Runtime
+Data
+
+Cloud manages:
+
+Hardware
+Network
+Storage
+2. PaaS
+
+Platform as a Service
+
+Provides:
+
+Runtime
+Database
+Deployment platform
+
+Examples:
+
+AWS Elastic Beanstalk
+Google App Engine
+
+Developer only manages:
+
+Application Code
+3. SaaS
+
+Software as a Service
+
+Ready-to-use software.
+
+Examples:
+
+Gmail
+Netflix
+Salesforce
+14. Cloud Deployment Models
+Public Cloud
+
+Available publicly.
+
+Examples:
+
+AWS
+Azure
+Google Cloud
+Private Cloud
+
+Used by one organization.
+
+Hybrid Cloud
+
+Combination of public + private.
+
+Example:
+
+Private Database
+
++
+
+Public Application Server
+15. AWS Fundamentals
+
+Important AWS services for FSE:
+
+EC2
+
+Elastic Compute Cloud
+
+Provides virtual servers.
+
+Example:
+
+Deploy Spring Boot:
+
+Spring Boot Application
+
+       |
+
+AWS EC2 Instance
+S3
+
+Simple Storage Service
+
+Used for:
+
+Images
+Videos
+Documents
+
+Example:
+
+Profile picture storage:
+
+React Upload
+
+     |
+
+AWS S3
+
+     |
+
+Image URL
+RDS
+
+Managed database service.
+
+Supports:
+
+MySQL
+PostgreSQL
+Oracle
+16. Angular Fundamentals
+Definition
+
+Angular is a TypeScript-based frontend framework developed by Google for building single-page applications.
+
+Architecture:
+
+Component
+
+ |
+
+Template
+
+ |
+
+Service
+
+ |
+
+API
+Angular Component
+
+Example:
+
+import { Component } from '@angular/core';
+
+@Component({
+
+selector:'app-home',
+
+template:'<h1>Hello Angular</h1>'
+
+})
+
+export class HomeComponent{
+
+}
+Angular Features
+Components
+
+Reusable UI blocks.
+
+Directives
+
+Modify DOM behavior.
+
+Example:
+
+<p *ngIf="show">
+Hello
+</p>
+Services
+
+Reusable business logic.
+
+Dependency Injection
+
+Angular automatically provides required objects.
+
+17. React vs Angular
+React	Angular
+Library	Framework
+JavaScript	TypeScript
+Virtual DOM	Real DOM + Change Detection
+Facebook	Google
+Flexible	Complete solution
+18. Generative AI Fundamentals
+Definition
+
+Generative AI is artificial intelligence that can create new content such as:
+
+Text
+Images
+Code
+Audio
+
+Examples:
+
+ChatGPT
+Gemini
+Claude
+19. Large Language Models (LLM)
+Definition
+
+LLM is a deep learning model trained on huge text datasets to understand and generate human-like language.
+
+Examples:
+
+GPT
+Llama
+Claude
+20. Prompt Engineering
+Definition
+
+Prompt engineering is the process of designing effective instructions to get better AI outputs.
+
+Example:
+
+Bad prompt:
+
+Explain Java
+
+Good prompt:
+
+Explain Java OOP concepts with examples for a Java developer interview.
+21. RAG (Retrieval Augmented Generation)
+Definition
+
+RAG combines:
+
+LLM
++
+External Knowledge Base
+
+to generate accurate responses.
+
+Architecture:
+
+User Question
+
+      |
+
+Embedding
+
+      |
+
+Vector Database
+
+      |
+
+Relevant Documents
+
+      |
+
+LLM
+
+      |
+
+Answer
+
+Applications:
+
+Chatbots
+Document search
+Enterprise AI assistants
+22. AI in Full Stack Applications
+
+Example:
+
+React:
+
+Chat Interface
+
+↓
+
+Spring Boot:
+
+API Layer
+
+↓
+
+AI Model:
+
+OpenAI API / LLM
+
+↓
+
+Response:
+
+AI Generated Answer
