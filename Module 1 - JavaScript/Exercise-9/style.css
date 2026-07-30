@@ -1,0 +1,24 @@
+body{
+    font-family:Arial,sans-serif;
+    margin:30px;
+    background:#f4f4f4;
+}
+
+button{
+    padding:10px 15px;
+    margin-right:10px;
+    cursor:pointer;
+}
+
+#loading{
+    color:#007BFF;
+    font-weight:bold;
+}
+
+.card{
+    background:white;
+    border-left:5px solid #007BFF;
+    padding:15px;
+    margin:15px 0;
+    border-radius:6px;
+}

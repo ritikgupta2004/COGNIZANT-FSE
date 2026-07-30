@@ -1,0 +1,21 @@
+body{
+    font-family:Arial,sans-serif;
+    margin:30px;
+    background:#f4f4f4;
+}
+
+input,select{
+    width:250px;
+    padding:10px;
+}
+
+button{
+    padding:10px 20px;
+    cursor:pointer;
+}
+
+#error{
+    color:red;
+    font-weight:bold;
+    margin-top:15px;
+}

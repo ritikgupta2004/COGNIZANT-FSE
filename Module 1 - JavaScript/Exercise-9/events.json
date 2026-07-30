@@ -1,0 +1,14 @@
+[
+    {
+        "name":"Music Festival",
+        "category":"Music"
+    },
+    {
+        "name":"Food Carnival",
+        "category":"Food"
+    },
+    {
+        "name":"Coding Workshop",
+        "category":"Workshop"
+    }
+]
