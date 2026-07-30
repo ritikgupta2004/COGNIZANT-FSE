@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Local Community Event Portal</title>
+
+    <style>
+
+        body{
+            font-family:Arial,sans-serif;
+            margin:20px;
+        }
+
+        nav{
+            margin-bottom:20px;
+        }
+
+        nav a{
+            text-decoration:none;
+            margin-right:10px;
+        }
+
+        #welcomeBanner{
+            background-color:blue;
+            color:white;
+            padding:20px;
+            text-align:center;
+        }
+
+        .highlight{
+            background-color:yellow;
+            color:black;
+            font-weight:bold;
+            padding:5px;
+        }
+
+        .event-image{
+            width:200px;
+            height:150px;
+            border:3px solid black;
+            transition:0.3s;
+            cursor:pointer;
+        }
+
+        table{
+            width:100%;
+            text-align:center;
+        }
+
+        td{
+            padding:15px;
+        }
+
+        form{
+            width:500px;
+            border:2px solid gray;
+            padding:20px;
+            border-radius:10px;
+            margin-top:20px;
+        }
+
+        input,select,textarea{
+            width:100%;
+            padding:8px;
+            margin-top:5px;
+            margin-bottom:15px;
+        }
+
+        button{
+            background-color:blue;
+            color:white;
+            padding:10px 20px;
+            border:none;
+            cursor:pointer;
+        }
+
+        output{
+            display:block;
+            margin-top:10px;
+            color:green;
+            font-weight:bold;
+        }
+
+        #fee{
+            color:blue;
+            font-weight:bold;
+        }
+
+        #charCount{
+            color:red;
+            font-weight:bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav>
+
+<h2>Local Community Event Portal</h2>
+
+<a href="#home">Home</a> |
+<a href="#events">Events</a> |
+<a href="#gallery">Gallery</a> |
+<a href="#registration">Register</a> |
+<a href="#contact">Contact</a> |
+<a href="help.html" target="_blank">Help</a>
+
+</nav>
+
+<main>
+
+<section id="home">
+
+<h1>Welcome to Local Community Events</h1>
+
+<p>Find upcoming events and community services.</p>
+
+</section>
+
+<div id="welcomeBanner">
+
+<h2>Welcome Resident!</h2>
+
+<p>We are happy to have you on our community portal.</p>
+
+<p>
+
+Special Offer :
+
+<span style="color:red;font-weight:bold;">
+
+Register early and get discounts!
+
+</span>
+
+</p>
+
+<p class="highlight">
+
+Join exciting local events and activities.
+
+</p>
+
+</div>
+
+<section id="gallery">
+
+<h2>Community Event Gallery</h2>
+
+<table>
+
+<tr>
+
+<td>
+
+<img src="images/event1.jpg" class="event-image"
+alt="Music Festival"
+title="Music Festival"
+ondblclick="enlargeImage(this)">
+
+<p>Music Festival</p>
+
+</td>
+
+<td>
+
+<img src="images/event2.jpg" class="event-image"
+alt="Sports Event"
+title="Sports Event">
+
+<p>Sports Event</p>
+
+</td>
+
+<td>
+
+<img src="images/event3.jpg" class="event-image"
+alt="Food Festival"
+title="Food Festival">
+
+<p>Food Festival</p>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<img src="images/event4.jpg" class="event-image"
+alt="Workshop"
+title="Workshop">
+
+<p>Workshop</p>
+
+</td>
+
+<td>
+
+<img src="images/event5.jpg" class="event-image"
+alt="Community Meeting"
+title="Community Meeting">
+
+<p>Community Meeting</p>
+
+</td>
+
+<td>
+
+<img src="images/event6.jpg" class="event-image"
+alt="Cultural Event"
+title="Cultural Event">
+
+<p>Cultural Event</p>
+
+</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<!-- Video Invite -->
+
+<section id="videoInvite">
+
+<h2>Community Event Invitation</h2>
+
+<video width="500"
+controls
+oncanplay="videoReady()">
+
+<source src="video/event.mp4" type="video/mp4">
+
+Your browser does not support the video tag.
+
+</video>
+
+<p id="videoStatus"></p>
+
+</section>
+
+<section id="registration">
+
+<h2>Event Registration</h2>
+
+<form onsubmit="showMessage(event)">
+
+<label>Name</label>
+
+<input type="text"
+placeholder="Enter your name"
+required
+autofocus>
+
+<label>Email</label>
+
+<input type="email"
+placeholder="Enter your email"
+required>
+
+<label>Phone Number</label>
+
+<input type="text"
+id="phone"
+placeholder="Enter 10-digit phone number"
+onblur="validatePhone()">
+
+<label>Event Date</label>
+
+<input type="date" required>
+
+<label>Event Type</label>
+
+<select id="eventType"
+required
+onchange="showFee(); savePreference();">
+
+<option value="">Select Event</option>
+
+<option value="100">Music Festival</option>
+
+<option value="200">Workshop</option>
+
+<option value="150">Sports Event</option>
+
+<option value="250">Cultural Event</option>
+
+</select>
+
+<p id="fee"></p>
+
+<label>Feedback</label>
+
+<textarea
+id="feedback"
+rows="5"
+placeholder="Write your feedback"
+onkeyup="countCharacters()"></textarea>
+
+<p id="charCount">Characters : 0</p>
+
+<button
+type="submit"
+onclick="buttonClick()">
+
+Register
+
+</button>
+
+<button
+type="button"
+onclick="clearPreferences()">
+
+Clear Preferences
+
+</button>
+
+<output id="confirmation"></output>
+
+</form>
+
+</section>
+
+<section id="events">
+
+<h2>Upcoming Events</h2>
+
+<p>Music festivals, workshops, sports competitions and community programs.</p>
+
+</section>
+<!-- Geolocation -->
+
+<section id="location">
+
+<h2>Find Nearby Events</h2>
+
+<button type="button" onclick="findLocation()">
+
+Find Nearby Events
+
+</button>
+
+<p id="locationResult"></p>
+
+</section>
+
+<section id="contact">
+
+<h2>Contact Us</h2>
+
+<p>Email : community@example.com</p>
+
+</section>
+
+</main>
+
+<footer>
+
+<p>&copy; 2026 Local City Council</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
