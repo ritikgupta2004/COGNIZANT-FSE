@@ -1,0 +1,29 @@
+/* Header styles */
+
+h2 {
+    color: navy;
+    text-align: center;
+}
+
+/* Paragraph styles */
+
+p {
+    font-size: 18px;
+    color: #333333;
+}
+
+/* Event card styles */
+
+.eventCard {
+    background-color: white;
+    border: 1px solid #cccccc;
+    padding: 15px;
+    margin: 20px;
+    border-radius: 8px;
+}
+
+/* Heading inside event card */
+
+.eventCard h3 {
+    color: darkgreen;
+}

@@ -1,0 +1,54 @@
+/* Body Background */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    background-image: url("images/community-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+}
+
+/* Header Gradient */
+
+header {
+    background: linear-gradient(to right, #007BFF, #00BFFF);
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Section */
+
+.event-section {
+    margin: 40px;
+}
+
+/* Event Card */
+
+.event-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid #007BFF;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+/* Headings */
+
+h2 {
+    background: linear-gradient(to right, #28a745, #7CFC00);
+    color: white;
+    padding: 10px;
+}
+
+h3 {
+    color: #003366;
+}
+
+/* Paragraph */
+
+p {
+    color: #444444;
+}
